@@ -6,10 +6,10 @@
 2. 系统自身并不承担业务逻辑，通过ssh 协议执行远程机器的命令，支持hive、spark、kettle、python、shell等脚本的执行。
 3. 本系统实现了邮件告警功能，配置作业的收件人邮箱，当作业执行失败会发报错信息到该邮箱。
 
-# 系统截图
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/job.png)
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/addJob.png)
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/jobLog.png)
+# 系统部分截图
+![作业管理](https://github.com/iture123/helloJob/blob/master/helloJob/doc/job.png)
+![添加作业](https://github.com/iture123/helloJob/blob/master/helloJob/doc/addJob.png)
+![作业日志](https://github.com/iture123/helloJob/blob/master/helloJob/doc/jobLog.png)
 
 # 技术栈：
 spring、springmvc、mybatis、quartz、mysql
