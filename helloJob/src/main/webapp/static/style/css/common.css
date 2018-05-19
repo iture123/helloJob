@@ -1,0 +1,245 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: blue;
+}
+
+pre {
+    margin: 0px;
+    padding: 0px;
+}
+
+textarea {
+    border: 1px solid #D3D3D3;
+    border-radius: 2px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th {
+    font-weight: normal;
+    color: #383838;
+    text-align: right;
+}
+
+.grid {border: 1px solid #eeeeee;font: 12px arial,helvetica,sans-serif;}
+.grid td {font: 100% arial,helvetica,sans-serif;height: 24px;padding: 5px;}
+.grid {border-collapse: collapse;width: 100%;}
+.grid th {background: none repeat scroll 0 0 #E7F3FE;border: 1px solid #eeeeee;height: 27px;line-height: 27px;padding-left: 5px;}
+.grid td {border: 1px solid #eeeeee;padding-left: 5px;}
+
+/**寮圭獥閬竷鑳屾櫙**/
+.window-proxy-mask, .window-mask {
+    background: #000000;
+}
+
+.window-mask {
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+
+.detail_page .item {
+    display: inline-block;
+    min-width: 100px;
+    max-width: 180px;
+}
+
+.datagrid-header-row, .datagrid-row {
+    height: 29px;
+}
+
+/** 鍒楄〃涓殑鍥剧墖 **/
+.datagrid-body .dg_img {
+    max-width: 200px;
+    height: 50px;
+    padding-top: 5px;
+}
+
+.textbox-focused {
+    border-color: #48ADE0;
+    -moz-box-shadow: 0 0 1px 0 #D3D3D3;
+    -webkit-box-shadow: 0 0 1px 0 #D3D3D3;
+    box-shadow: 0 0 1px 0 #D3D3D3;
+}
+
+/**璋冩暣tabs鏍峰紡**/
+.tabs li a.tabs-inner {
+    border-radius: 0px;
+}
+
+.tabs-header, .tabs-tool {
+    background-color: #D9DEE4;
+    padding-top: 4px;
+}
+
+.tabs-header {
+    #padding-top: 22px;
+}
+
+.tabs li.tabs-selected * {
+    color: #09c;
+}
+
+.tabs li.tabs-selected a.tabs-inner {
+    border: 1px solid #2dc4f7;
+    border-bottom: 1px solid #fff;
+
+}
+
+.tabs li a.tabs-close {
+    background-position-x: 1000px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    line-height: 10px;
+}
+
+.tabs li .tabs-close:before {
+    content: "x";
+}
+
+/**table**/
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+    border-color: #EAEDF1;
+    border-style: solid;
+}
+
+.datagrid-header, .datagrid-td-rownumber {
+    background-color: #f5f5f5;
+    background: #f5f5f5;
+}
+
+/**璋冩暣window鏍峰紡**/
+.window-thinborder .window-header {
+    padding: 8px 8px;
+}
+
+.l-btn {
+    border-radius: 2px;
+    padding: 1px 4px;
+    margin: 0px 4px;
+}
+
+.l-btn.l-btn-plain {
+    padding: 1px;
+    margin: 0px;
+}
+
+.l-btn.l-btn-plain:hover {
+    border-radius: 2px;
+    background: #e2e2e2;
+    color: #000000;
+    padding: 0px;
+    border: 1px solid #ccc;
+}
+
+.l-btn.color1, .l-btn.color1 .l-btn-icon {
+    color: #fff;
+    border: 1px solid #09c;
+    background: #09c;
+}
+
+.l-btn.color1:hover {
+    opacity: 0.9;
+}
+
+.l-btn.color2 {
+    border: 1px solid #dedede;
+    background: #f1f1f1;
+    color: #333;
+}
+
+.l-btn.color2:hover {
+    opacity: 0.9;
+}
+
+.textbox, .textbox .textbox-text {
+    border-radius: 4px;
+}
+
+.combobox-item, .combobox-group {
+    min-height: 12px;
+}
+
+/** 棰勮鍥剧墖 **/
+.image_pre {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 2px;
+    display: none;
+}
+
+.image_pre img {
+    max-width: 100%;
+    max-height: 150px;
+}
+
+/** 鍙橀噺绗﹀彿 **/
+.symbol_var {
+    font-style: normal;
+}
+
+/*瀹氫箟婊氬姩鏉″楂樺強鑳屾櫙锛屽楂樺垎鍒搴旀í绔栨粴鍔ㄦ潯鐨勫昂瀵�*/
+.scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/*瀹氫箟婊氬姩鏉＄殑杞ㄩ亾锛屽唴闃村奖鍙婂渾瑙�*/
+.scrollbar::-webkit-scrollbar-track {
+    background-color: #424f63;
+}
+
+/*瀹氫箟婊戝潡锛屽唴闃村奖鍙婂渾瑙�*/
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: #09C;
+    background-clip: content-box;
+    border-top: 5px solid rgba(255, 255, 255, 0);
+    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    border-right: 4px solid rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #09C;
+}
+
+.icon-blue {
+    color: #3c8dbc !important;
+}
+
+.icon-purple {
+    color: #605ca8 !important;
+}
+
+.icon-green {
+    color: #00a65a !important;
+}
+
+.icon-red {
+    color: #dd4b39 !important;
+}
+
+.icon-yellow {
+    color: #f39c12 !important;
+}
+
+.icon-gray {
+    color: #9C9C9C !important;
+}
+
+.icon-black {
+    color: #000000 !important;
+}

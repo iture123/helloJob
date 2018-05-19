@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.admin.RoleMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, name, seq, description, status
+    </sql>
+
+    <select id="selectResourceIdListByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT
+            e.resource_id AS id
+        FROM
+            role r
+        LEFT JOIN role_resource e ON r.id = e.role_id
+        WHERE
+            r.id = #{id}
+    </select>
+
+    <select id="selectResourceListByRoleIdList" resultType="Resource"
+            parameterType="java.lang.Long">
+        SELECT
+            DISTINCT s.id AS id,
+            s.NAME AS 'name',
+            s.url AS url,
+            s.description AS description,
+            s.icon AS icon,
+            s.pid AS pid,
+            s.seq AS seq,
+            s.STATUS AS 'status',
+            s.open_mode AS openMode,
+            s.opened as opened,
+            s.resource_type AS resourceType,
+            s.create_time AS createTime
+        FROM
+            role r
+        LEFT JOIN role_resource e ON r.id = e.role_id
+        LEFT JOIN resource s ON e.resource_id = s.id
+        WHERE
+            r.id in  
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+                #{item}
+            </foreach>
+        AND s.resource_type = 0
+        AND s.status = 0
+        ORDER BY seq
+    </select>
+
+    <select id="selectResourceListByRoleId" resultType="java.util.HashMap" parameterType="java.lang.Long">
+        SELECT
+            e.id AS id,
+            s.url AS url
+        FROM
+            role r
+        LEFT JOIN role_resource e ON r.id = e.role_id
+        LEFT JOIN resource s ON e.resource_id = s.id
+        WHERE
+            r.id = #{id}
+    </select>
+
+</mapper>

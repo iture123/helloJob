@@ -1,0 +1,30 @@
+.head{background: #09C; font-size: 14px; color: white; height: 50px; line-height: 50px; padding: 0px 8px; overflow: hidden;}
+.head table{border-spacing: 0px; width: 100%;}
+.head table,tr,td,th{padding: 0px;}
+.head .rtool a{color: white;}
+.head .rtool a.l-btn-plain:hover{color: black;}
+.head .rtool a.l-btn-plain.m-btn-plain-active{color: black;}
+
+.easyui-tabs .tabs{border-color: #A5C4EF;}
+.easyui-tabs .tabs li a.tabs-inner{border-radius: 2px 2px 0 0;}
+
+.tree-node {padding: 8px 0px;}
+.tree-node-hover{background: #465467; color: white;}
+.tree-node-selected{background: #0099cc; color: white;}
+.tree-node .tree-title{font-size: 16px; font-weight: normal;}
+
+.left{background-color: #424f63;}
+.menu_head{height: 30px;line-height: 30px;background: #4e5f77;color: #aeb9c2;text-align: center;}
+.layout-expand-north, .layout-expand-west{height: 0px;}
+
+.tree-expanded{
+    background: url('images/tree_icons_main.png') no-repeat -18px 0px;
+}
+.tree-collapsed {
+    background: url('images/tree_icons_main.png') no-repeat 0px 0px;
+}
+.tree-icon {
+    color: #BFBFBF;
+    font-size: 12px;
+    line-height: 18px;
+}

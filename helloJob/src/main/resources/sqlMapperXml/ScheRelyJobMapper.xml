@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.job.ScheRelyJobMapper">
+
+  <select id="getReferJobIdsOfOneJob" resultType="Long" >
+	select pid from sche_rely_job where job_id = #{jobId}
+	union 
+	select job_id from sche_rely_job where pid = #{jobId}
+    </select> 
+  <select id="getTreeList" resultType="com.helloJob.commons.result.Tree" parameterType="java.util.Set">
+	SELECT t1.`id`,t2.pid,CONCAT(t1.job_name,'(',t1.id,')') `text` FROM job_basic_info t1 LEFT JOIN sche_rely_job t2 ON t1.id = t2.job_id
+WHERE t1.id IN
+  <foreach collection="referJobIds" index="index" item="jobId" open="(" separator="," close=")">  
+            #{jobId}  
+        </foreach>
+
+   </select> 
+     <select id="getTriggerJobs" resultType="Long" >
+	select job_id from sche_rely_job where pid = #{jobId}
+    </select> 
+</mapper>

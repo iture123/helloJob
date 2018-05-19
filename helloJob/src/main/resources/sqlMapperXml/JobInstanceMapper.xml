@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.job.JobInstanceMapper">
+
+  <select id="getRelyJobFailInstance" resultType="Long" >
+		SELECT t1.pid FROM `sche_rely_job` t1 WHERE t1.job_id=#{jobId}
+AND NOT EXISTS (SELECT 1 FROM job_instance WHERE job_id=t1.pid AND dt=#{dt})
+    </select>
+    <delete id="delete" parameterType="java.lang.Long">
+    		delete from job_instance  where dt = #{dt} and job_id in 
+  <foreach collection="jobIds" index="index" item="jobId" open="(" separator="," close=")">  
+            #{jobId}  
+        </foreach>
+    </delete>
+</mapper>

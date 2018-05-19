@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.admin.UserMapper">
+
+    <resultMap id="userVoResultMap" type="com.helloJob.model.admin.vo.UserVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="organization_id" property="organizationId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+
+        <result column="organizationName" property="organizationName" jdbcType="VARCHAR"/>
+
+        <collection property="rolesList" ofType="Role">
+            <id column="roleId" property="id"/>
+            <result column="roleName" property="name"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, login_name AS loginName, name, password, salt, sex, email, phone, user_type AS userType, status, organization_id AS organizationId, create_time AS createTime
+    </sql>
+
+    <select id="selectUserVoById" resultMap="userVoResultMap" parameterType="java.lang.Long">
+        SELECT
+        t.id,
+        login_name,
+        t.`name`,
+        `password`,
+        sex,
+        email,
+        user_type,
+        t.`status`,
+        organization_id,
+        t.create_time,
+        phone,
+        s.`name` AS organizationName,
+        o.id AS roleId,
+        o.`name` AS roleName
+        FROM
+        user t
+        LEFT JOIN user_role r ON t.id = r.user_id
+        LEFT JOIN role o ON r.role_id = o.id
+        LEFT JOIN organization s ON s.id = t.organization_id
+        <where>
+            t.id = #{id}
+        </where>
+    </select>
+
+    <select id="selectUserPage" resultType="Map">
+        SELECT 
+        t.id, t.login_name AS loginName, t.`name`, t.phone, t.`password`, 
+        t.sex, t.email, t.create_time AS createTime, t.user_type AS userType, 
+        t.`status`, t.organization_id AS organizationId,  
+        s.`name` AS organizationName,GROUP_CONCAT(CAST(o.`name`  AS char)SEPARATOR ",")  AS rolesList
+        FROM user t
+        LEFT JOIN user_role r ON t.id = r.user_id
+        LEFT JOIN role o ON r.role_id = o.id
+        LEFT JOIN organization s ON s.id = t.organization_id
+        <where>
+            <if test=" name != null and name != '' ">
+                t.name = #{name}
+            </if>
+            <if test=" organizationId != null ">
+                t.organization_id = #{organizationId}
+            </if>
+            <if test=" startTime != null ">
+                <![CDATA[ and t.create_time >= #{startTime} ]]>
+            </if>
+            <if test=" endTime != null ">
+                <![CDATA[ and t.create_time <= #{endTime} ]]>
+            </if>
+        </where>
+        GROUP BY t.id
+    </select>
+	<select id="getAllUserList" resultType="map" >
+		select id,name,email from user WHERE `status`=0
+	</select>
+</mapper>

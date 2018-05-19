@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.job.JobLogMapper">
+
+    <select id="grid" resultType="com.helloJob.vto.JobLogVto" >
+select id,job_id jobId,job_state jobState,dt,begin_time beginTime,end_time endTime, job_img jobImg from job_log
+where 1=1
+  <if test=" jobId != null "> <![CDATA[  
+    	and job_id =#{jobId}
+     ]]></if>
+     <if test=" dt != null "> <![CDATA[  
+    	and dt =#{dt}
+     ]]></if>
+      <if test=" jobState != null and jobSate !='' "> <![CDATA[  
+    	and job_state =#{jobState}
+     ]]></if>
+    </select> 
+    
+    
+  <update id="updateRunningToError"><![CDATA[  
+  UPDATE job_log SET job_state='失败',`log`=CONCAT('<div style="color:red">系统重启，将中断运行的作业置为失败！</div><br>',`log`)
+    ,end_time = DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s') 
+  	 WHERE job_state ='执行中'
+  ]]> </update>
+<select id="getRunningJobIds" resultType="string"  >
+    		select id from job_log  where job_state='执行中' and dt = #{dt} and job_id in 
+  <foreach collection="jobIds" index="index" item="jobId" open="(" separator="," close=")">  
+            #{jobId}  
+        </foreach>
+    </select>
+    <select id="getJobState" resultType="string"  >
+    		select job_state from job_log  where job_id=#{jobId}   and dt = #{dt} order by begin_time desc limit 1 
+    </select>
+</mapper>
