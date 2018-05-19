@@ -8,7 +8,9 @@
 
 # 系统部分截图
 ![作业管理](https://github.com/iture123/helloJob/blob/master/helloJob/doc/job.png)
+
 ![添加作业](https://github.com/iture123/helloJob/blob/master/helloJob/doc/addJob.png)
+
 ![作业日志](https://github.com/iture123/helloJob/blob/master/helloJob/doc/jobLog.png)
 
 # 技术栈：
