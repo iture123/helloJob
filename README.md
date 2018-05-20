@@ -38,4 +38,5 @@ jdk1.8、spring、springmvc、mybatis、quartz、mysql
 * [ spring-shiro-training 开源中国地址 ](https://www.oschina.net/p/spring-shiro-training)
  
 # 联系本猿
-本猿qq：1011699225（默默向上游）
+* 本猿qq：1011699225（默默向上游）
+* 对大数据技术感兴趣的朋友也欢迎加Q群：644036039
