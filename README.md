@@ -38,7 +38,7 @@ jdk1.8、spring、springmvc、mybatis、quartz、mysql
 * 增加对jdbc 的支持,实现数据库的调用。
 * 添加本地脚本执行方式，即对于部署脚本和调度系统在同一台机器的作业，不用通过ssh来执行。
 * 集成关系数据库、hive、hdfs、之间的etl工作。
-* 如果有其他good idea，欢迎您提出来━(*｀∀´*)ノ亻!
+* 如果有其他idea，欢迎您提出来━(*｀∀´*)ノ亻!
 
 # 特别鸣谢
 * 本系统的权限控制用的是轩少_开源的spring-shiro-training，在此特别感谢
