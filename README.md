@@ -29,7 +29,7 @@ jdk1.8、spring、springmvc、mybatis、quartz、mysql
 * 作业告警发件邮箱配置：src/main/email.properties
 
 # 开发环境
-* 开发工具：eclipse，lombok，maven、tomcat 8.55，mysql5.1+
+* 开发工具：eclipse，lombok，maven、tomcat 8.55，mysql5.5+
 *  lombok 的主要作用是通过注解减少setter 和getter方法的生成，保持代码简洁。eclipse 务必要先安装lombok插件
 *  部署好项目后，登陆http://localhost:8080/helloJob ，默认账号 admin/test
 
