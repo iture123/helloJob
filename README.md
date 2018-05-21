@@ -33,10 +33,17 @@ jdk1.8、spring、springmvc、mybatis、quartz、mysql
 *  lombok 的主要作用是通过注解减少setter 和getter方法的生成，保持代码简洁。eclipse 务必要先安装lombok插件
 *  部署好项目后，登陆http://localhost:8080/helloJob ，默认账号 admin/test
 
+# 未来规划
+计划将来融入如下功能：
+* 增加对jdbc 的支持,实现数据库的调用。
+* 添加本地脚本执行方式，即对于部署脚本和调度系统在同一台机器的作业，不用通过ssh来执行。
+* 集成关系数据库、hive、hdfs、之间的etl工作。
+* 如果有其他good idea，欢迎您提出来━(*｀∀´*)ノ亻!
+
 # 特别鸣谢
 * 本系统的权限控制用的是轩少_开源的spring-shiro-training，在此特别感谢
 * [ spring-shiro-training 开源中国地址 ](https://www.oschina.net/p/spring-shiro-training)
  
 # 联系本猿
 * 本猿qq：1011699225（默默向上游）
-* 对大数据技术感兴趣的朋友也欢迎加Q群：644036039
+* 对大数据技术感兴趣的朋友欢迎加Q群：644036039
