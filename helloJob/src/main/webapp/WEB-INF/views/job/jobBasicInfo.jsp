@@ -49,15 +49,17 @@ table.pgTable td.tdTitle{
 </style>
 </head>
 <body>
-<div style="margin:5px auto" id="jobForm">
-	&nbsp;&nbsp;编号<input class="easyui-numberbox" style="width:100px" name="jobId">
-	&nbsp;&nbsp;名称<input class="easyui-textbox" style="width:100px" name="jobName">
-	&nbsp;&nbsp;创建人<select class="easyui-combobox" name="creater" data-options="panelHeight:'auto',valueField:'id',textField:'text',url:' ${staticPath}/job/getHasJobUserList' "     style="width:120px"></select>
-	
-	 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onClick="jobMvc.Controller.searchJob()" style="width:80px">查询</a>	
-	 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onClick="jobMvc.Controller.cleanParam()" style="width:80px">清空</a>
-	
-</div>
+<div class="easyui-layout" data-options="fit:true,border:false">
+	 <div data-options="region:'north',border:false" style=";height: 40px; line-height:40px;overflow: hidden;background-color: #fff">
+		<div id="jobForm">
+		&nbsp;&nbsp;编号<input class="easyui-numberbox" style="width:100px" name="jobId">
+		&nbsp;&nbsp;名称<input class="easyui-textbox" style="width:100px" name="jobName">
+		&nbsp;&nbsp;创建人<select class="easyui-combobox" name="creater" data-options="panelHeight:'auto',valueField:'id',textField:'text',url:' ${staticPath}/job/getHasJobUserList' "     style="width:120px"></select>
+		
+		 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onClick="jobMvc.Controller.searchJob()" style="width:80px">查询</a>	
+		 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onClick="jobMvc.Controller.cleanParam()" style="width:80px">清空</a>
+		</div>
+	</div>
  <div id="tb">
  	<a href="#" class="easyui-linkbutton" iconCls="icon-tip" plain="true" onclick="jobMvc.Controller.seeJob()">查看详细</a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="jobMvc.Controller.addJob()">添加</a>
@@ -68,10 +70,12 @@ table.pgTable td.tdTitle{
 	<a href="#" class="easyui-linkbutton" iconCls="icon-no" plain="true" onclick="jobMvc.Controller.stopSchedule()">停用调度</a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="jobMvc.Controller.runOnce()">手工执行</a>
 </div>
- <table id="jobDg" style="height:660px"
-            toolbar="#tb">
- </table>
 
+<div data-options="region:'center',border:true" >
+	 <table id="jobDg" 
+	            toolbar="#tb">
+	 </table>
+</div>
 
 <div id="addJob" title="添加作业"  closed="true" class="easyui-dialog" style="width:800px;height:‘auto''"  data-options="closed:'true' ">
 	<form class="">
@@ -234,6 +238,7 @@ table.pgTable td.tdTitle{
 <div id="seeJobDlg" class="easyui-dialog" title="查看作业详细" style=";width:800px;height:'auto'''"
 	 data-options="closed:'true' ">
 		<div id="seeJobContent"></div>
+</div>
 </div>
 <script type="text/juicer" id="seeJobTpl">  
 	<ul>

@@ -1,3 +1,6 @@
+#mainTabs .panel-body-noheader{
+	overflow-y:hidden;
+}
 .head{background: #09C; font-size: 14px; color: white; height: 50px; line-height: 50px; padding: 0px 8px; overflow: hidden;}
 .head table{border-spacing: 0px; width: 100%;}
 .head table,tr,td,th{padding: 0px;}

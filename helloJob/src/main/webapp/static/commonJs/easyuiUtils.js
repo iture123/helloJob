@@ -78,13 +78,18 @@ var easyuiUtils = {
 	}
 	,clearParam:function(domId){
 		$("#"+domId+" .easyui-textbox").each(function(index,dom){
-			$(this).textbox("clear");
+			var $this = $(this);
+			$this.textbox("clear");
+			var defaultValue = $this.attr("defaultvalue");
+			if(defaultValue)	$this.textbox("setValue",defaultValue);
 		});
 		$("#"+domId+" .easyui-datebox").each(function(index,dom){
 			$(this).datebox("clear");
 		});
 		$("#"+domId+" .easyui-numberbox").each(function(index,dom){
 			$(this).numberbox("clear");
+			var defaultValue = $(this).attr("defaultvalue");
+			if(defaultValue)	$(this).numberbox("setValue",defaultValue);
 		});
 		$("#"+domId+" .easyui-combobox").each(function(index,dom){
 			$(this).combobox("clear");

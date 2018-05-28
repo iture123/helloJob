@@ -10,7 +10,7 @@ var jobLogMvc = {
 							{
 								url : path + "/jobLog/grid.do",
 								queryParams : param,
-								fit : false,
+								fit : true,
 								striped : false,
 								pagination : true,
 								singleSelect : true,
