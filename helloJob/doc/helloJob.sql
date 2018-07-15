@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.24 (32 bit)
 MySQL - 5.7.21 : Database - hello_job
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -11,6 +12,28 @@ MySQL - 5.7.21 : Database - hello_job
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `host_info` */
+
+CREATE TABLE `host_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `protocol` varchar(32) NOT NULL COMMENT '协议，ssh,jdbc',
+  `host` varchar(64) DEFAULT NULL,
+  `port` int(11) DEFAULT NULL,
+  `username` varchar(32) DEFAULT NULL,
+  `passwd` varchar(32) DEFAULT NULL,
+  `driver_class` varchar(256) DEFAULT NULL,
+  `jdbc_url` varchar(256) DEFAULT NULL,
+  `creater` bigint(20) DEFAULT NULL,
+  `create_time` varchar(19) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `host_info` */
+
+insert  into `host_info`(`id`,`protocol`,`host`,`port`,`username`,`passwd`,`driver_class`,`jdbc_url`,`creater`,`create_time`) values (1,'本地执行','localhost',NULL,NULL,NULL,NULL,NULL,1,'2018-05-28 19:02:01');
+insert  into `host_info`(`id`,`protocol`,`host`,`port`,`username`,`passwd`,`driver_class`,`jdbc_url`,`creater`,`create_time`) values (2,'jdbc',NULL,NULL,'root','hadoop','com.mysql.jdbc.Driver','jdbc:mysql://127.0.0.1:3306/test',1,'2018-05-28 19:11:41');
+insert  into `host_info`(`id`,`protocol`,`host`,`port`,`username`,`passwd`,`driver_class`,`jdbc_url`,`creater`,`create_time`) values (3,'ssh',NULL,22,'cloudera','cloudera',NULL,NULL,1,'2018-05-28 19:25:40');
+
 /*Table structure for table `job_basic_info` */
 
 CREATE TABLE `job_basic_info` (
@@ -30,7 +53,7 @@ CREATE TABLE `job_basic_info` (
 
 /*Data for the table `job_basic_info` */
 
-insert  into `job_basic_info`(`id`,`job_name`,`command`,`sche_type`,`job_type`,`creater`,`remark`,`job_user`,`passwd`,`ip`,`create_time`) values (1,'查看网卡信息','echo hello ${dt}',NULL,1,1,'','cloudera','cloudera','192.168.117.12','2018-05-19 14:56:09');
+insert  into `job_basic_info`(`id`,`job_name`,`command`,`sche_type`,`job_type`,`creater`,`remark`,`job_user`,`passwd`,`ip`,`create_time`) values (1,'查看网卡信息','echo hello ${dt}',NULL,1,1,'','cloudera','cloudera','192.168.117.129','2018-05-19 16:34:56');
 insert  into `job_basic_info`(`id`,`job_name`,`command`,`sche_type`,`job_type`,`creater`,`remark`,`job_user`,`passwd`,`ip`,`create_time`) values (2,'执行hive','hive -e \"set mapred.job.queue.name=TEST22;select age,count(1) from stu group by age\"',NULL,3,1,'执行hive','cloudera','cloudera','192.168.117.129','2018-05-19 13:33:53');
 insert  into `job_basic_info`(`id`,`job_name`,`command`,`sche_type`,`job_type`,`creater`,`remark`,`job_user`,`passwd`,`ip`,`create_time`) values (3,'spark 例子','/usr/bin/spark-submit --class org.apache.spark.examples.SparkPi \n--master yarn  \\\n--executor-memory 512m \\\n--deploy-mode cluster \\\n/usr/lib/spark/lib/spark-examples.jar 100',NULL,2,1,'测试spark','cloudera','cloudera','192.168.117.129','2018-05-19 13:49:59');
 insert  into `job_basic_info`(`id`,`job_name`,`command`,`sche_type`,`job_type`,`creater`,`remark`,`job_user`,`passwd`,`ip`,`create_time`) values (4,'查看java','java -version',NULL,1,1,'','cloudera','cloudera','192.168.117.129','2018-05-19 13:25:31');
@@ -45,6 +68,8 @@ CREATE TABLE `job_instance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `job_instance` */
+
+insert  into `job_instance`(`id`,`job_id`,`dt`,`create_time`) values ('2_20180518',2,20180518,'2018-05-19 16:36:11');
 
 /*Table structure for table `job_log` */
 
@@ -62,6 +87,8 @@ CREATE TABLE `job_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `job_log` */
+
+insert  into `job_log`(`id`,`job_id`,`job_state`,`dt`,`begin_time`,`end_time`,`log`,`job_img`,`application_id`) values ('2807c530-42a8-461a-a4f3-2ada9bdf47de',2,'成功',20180518,'2018-05-19 16:35:10','2018-05-19 16:36:11','Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.properties<br>Query ID = cloudera_20180519013535_66c2cd25-d294-4616-af60-7df07520f70d<br>Total jobs = 1<br>Launching Job 1 out of 1<br>Number of reduce tasks not specified. Estimated from input data size: 1<br>In order to change the average load for a reducer (in bytes):<br>  set hive.exec.reducers.bytes.per.reducer=&lt;number&gt;<br>In order to limit the maximum number of reducers:<br>  set hive.exec.reducers.max=&lt;number&gt;<br>In order to set a constant number of reducers:<br>  set mapreduce.job.reduces=&lt;number&gt;<br>Starting Job = job_1526705490344_0006, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1526705490344_0006/<br>Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1526705490344_0006<br>Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1<br>2018-05-19 01:35:45,770 Stage-1 map = 0%,  reduce = 0%<br>2018-05-19 01:35:57,074 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.37 sec<br>2018-05-19 01:36:09,791 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.54 sec<br>MapReduce Total cumulative CPU time: 6 seconds 540 msec<br>Ended Job = job_1526705490344_0006<br>MapReduce Jobs Launched: <br>Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 6.54 sec   HDFS Read: 7389 HDFS Write: 15 SUCCESS<br>Total MapReduce CPU Time Spent: 6 seconds 540 msec<br>OK<br>NULL	8<br>18	1<br>30	2<br>Time taken: 46.219 seconds, Fetched: 3 row(s)<br>WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.<br>WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.<br>','{\"command\":\"hive -e \\\"set mapred.job.queue.name=TEST22;select age,count(1) from stu group by age\\\"\",\"createTime\":\"2018-05-19 13:33:53\",\"creater\":1,\"id\":2,\"ip\":\"192.168.117.129\",\"jobName\":\"执行hive\",\"jobType\":3,\"jobUser\":\"cloudera\",\"passwd\":\"cloudera\",\"remark\":\"执行hive\"}',NULL);
 
 /*Table structure for table `job_type` */
 
@@ -155,6 +182,7 @@ insert  into `resource`(`id`,`name`,`url`,`open_mode`,`description`,`icon`,`pid`
 insert  into `resource`(`id`,`name`,`url`,`open_mode`,`description`,`icon`,`pid`,`seq`,`status`,`opened`,`resource_type`,`create_time`) values (234,'作业日志','/jobLog/jobLog','iframe',NULL,'',230,4,0,1,0,'2018-04-13 18:09:13');
 insert  into `resource`(`id`,`name`,`url`,`open_mode`,`description`,`icon`,`pid`,`seq`,`status`,`opened`,`resource_type`,`create_time`) values (236,'邮箱账号','/email/account','iframe',NULL,'',235,1,0,1,0,'2018-04-15 18:39:01');
 insert  into `resource`(`id`,`name`,`url`,`open_mode`,`description`,`icon`,`pid`,`seq`,`status`,`opened`,`resource_type`,`create_time`) values (238,'yarn集群','/yarn/clusterInfo','iframe',NULL,'',237,1,0,1,0,'2018-04-21 11:52:07');
+insert  into `resource`(`id`,`name`,`url`,`open_mode`,`description`,`icon`,`pid`,`seq`,`status`,`opened`,`resource_type`,`create_time`) values (239,'执行主机','/host/hostInfo','iframe',NULL,'',230,5,0,1,0,'2018-05-25 21:37:25');
 
 /*Table structure for table `role` */
 
@@ -315,9 +343,33 @@ CREATE TABLE `sys_log` (
   `client_ip` varchar(255) DEFAULT NULL COMMENT '客户端ip',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='系统日志';
 
 /*Data for the table `sys_log` */
+
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (1,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:editPage,[参数]:id=230&_=1526718114534&','0:0:0:0:0:0:0:1','2018-05-19 16:33:47');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (2,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:edit,[参数]:id=230&name=作业中心&resourceType=0&url=&openMode=无(用于上层菜单)&icon=glyphicon-folder-open &seq=1&status=0&opened=1&pid=&','0:0:0:0:0:0:0:1','2018-05-19 16:33:55');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (3,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:logout,[参数]:',NULL,'2018-05-19 20:09:03');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (4,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:logout,[参数]:',NULL,'2018-05-21 13:33:54');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (5,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:login,[参数]:',NULL,'2018-05-25 21:35:52');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (6,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:loginPost,[参数]:_csrf=c24cbcf0-faeb-476d-bc80-d9558c59459c&username=admin&password=test&captcha=r7a5&rememberMe=1&','0:0:0:0:0:0:0:1','2018-05-25 21:36:05');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (7,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:addPage,[参数]:',NULL,'2018-05-25 21:36:41');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (8,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:add,[参数]:name=执行主机&resourceType=0&url=/job/hostInfo&openMode=iframe&icon=&seq=5&status=0&opened=0&pid=230&','0:0:0:0:0:0:0:1','2018-05-25 21:37:25');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (9,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:editPage,[参数]:id=239&_=1527255366449&','0:0:0:0:0:0:0:1','2018-05-25 21:37:30');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (10,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:edit,[参数]:id=239&name=执行主机&resourceType=0&url=/job/hostInfo&openMode=iframe&icon=&seq=5&status=0&opened=1&pid=230&','0:0:0:0:0:0:0:1','2018-05-25 21:37:36');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (11,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:editPage,[参数]:id=239&_=1527255366451&','0:0:0:0:0:0:0:1','2018-05-25 21:41:09');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (12,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:editPage,[参数]:id=239&_=1527255366450&','0:0:0:0:0:0:0:1','2018-05-25 21:41:09');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (13,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:editPage,[参数]:id=239&_=1527255366452&','0:0:0:0:0:0:0:1','2018-05-25 21:41:10');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (14,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:edit,[参数]:id=239&name=执行主机&resourceType=0&url=/host/hostInfo&openMode=iframe&icon=&seq=5&status=0&opened=1&pid=230&','0:0:0:0:0:0:0:1','2018-05-25 21:41:20');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (15,'admin','admin','[类名]:com.helloJob.controller.admin.UserController,[方法]:addPage,[参数]:',NULL,'2018-05-25 21:59:13');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (16,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:login,[参数]:',NULL,'2018-05-28 17:44:56');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (17,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:loginPost,[参数]:_csrf=38e50cbb-ebbe-4703-b463-51ecdc292420&username=admin&password=123456&captcha=wwsf&rememberMe=1&','0:0:0:0:0:0:0:1','2018-05-28 17:45:05');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (18,'admin','admin','[类名]:com.helloJob.controller.admin.LoginController,[方法]:loginPost,[参数]:_csrf=38e50cbb-ebbe-4703-b463-51ecdc292420&username=admin&password=test&captcha=auuq&rememberMe=1&','0:0:0:0:0:0:0:1','2018-05-28 17:45:57');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (19,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:addPage,[参数]:',NULL,'2018-05-28 17:46:23');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (20,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:addPage,[参数]:',NULL,'2018-05-28 17:46:33');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (21,'admin','admin','[类名]:com.helloJob.controller.admin.ResourceController,[方法]:addPage,[参数]:',NULL,'2018-05-28 17:46:39');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (22,'admin','admin','[类名]:com.helloJob.controller.job.HostInfoController,[方法]:add,[参数]:protocol=jdbc&driverClass=com.mysql.jdbc.Driver&jdbcUrl=jdbc:mysql://127.0.0.1:3306/test&username=root&passwd=hadoop&','0:0:0:0:0:0:0:1','2018-05-28 19:11:41');
+insert  into `sys_log`(`id`,`login_name`,`role_name`,`opt_content`,`client_ip`,`create_time`) values (23,'admin','admin','[类名]:com.helloJob.controller.job.HostInfoController,[方法]:add,[参数]:protocol=&ip=192.168.117.129&username=cloudera&passwd=cloudera&port=22&','0:0:0:0:0:0:0:1','2018-05-28 19:25:40');
 
 /*Table structure for table `user` */
 
