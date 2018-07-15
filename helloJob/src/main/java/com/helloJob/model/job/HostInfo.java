@@ -15,10 +15,13 @@ import lombok.Data;
 public class HostInfo {
 	@TableId(type = IdType.AUTO)
 	private Integer id;
-	private String protocol;
-	private String host;
+	private String protocol;//协议
+	private String host;//主机ip
 	private Integer port;
 	private String username;
 	private String passwd;
+	private String driverClass;//jdbc的 driver class
 	private String jdbcUrl;
+	private Long creater;
+	private String createTime;
 }
