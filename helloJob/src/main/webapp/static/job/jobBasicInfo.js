@@ -184,7 +184,7 @@ $(function(){
 function queryJobDg(param){
 	jobDg = $('#jobDg').datagrid({
     	url:path+"/job/getJobInfoList", queryParams:param,
-    	 fit : true,  striped : false, pagination : true, singleSelect : true, fitColumns:false,
+    	 fit : false,  striped : false, pagination : true, singleSelect : true, fitColumns:false,
         idField : 'id',   sortName : 'id',   sortOrder : 'desc',pageSize : 20,
         columns:[[
             {field:'id',title:'编号',width:50,sortable:true,rowspan:2},
