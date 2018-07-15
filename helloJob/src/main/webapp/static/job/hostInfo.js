@@ -173,6 +173,7 @@ var jobType={
 				}).dialog("open");
 	}
 }
+
 function getSelectRow(){
 	var row = jobTypeDg.datagrid("getSelected");
 	if(row ==null){
