@@ -55,6 +55,7 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper,  JobLog> implem
 		jobLog.setJobState(JobStateConst.RUNNING);
 		jobLog.setId(UUID.randomUUID().toString()); 
 		jobLog.setJobImg(JSON.toJSONString(job));
+		jobLog.setLog("执行命令:"+job.getCommand());
 		this.add(jobLog);
 		return jobLog;
 	}

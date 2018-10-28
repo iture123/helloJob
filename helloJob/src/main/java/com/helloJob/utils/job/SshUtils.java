@@ -8,8 +8,10 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.helloJob.model.job.HostInfo;
 import com.helloJob.model.job.JobBasicInfo;
 import com.helloJob.model.job.JobLog;
+import com.helloJob.service.job.HostInfoService;
 import com.helloJob.service.job.JobLogService;
 import com.helloJob.utils.ApplicationContextUtil;
 import com.helloJob.vto.JobExecResult;
@@ -25,13 +27,15 @@ public class SshUtils {
 
 	public static JobExecResult execute(JobBasicInfo job, Integer dt) {
 		JobLogService jobLogService = ApplicationContextUtil.getContext().getBean(JobLogService.class);
+		HostInfoService hostInfoService = ApplicationContextUtil.getContext().getBean(HostInfoService.class);
 		JobLog jobLog = jobLogService.addRunningLog(job.getId(), dt, job);
 		JobExecResult jobExecResult = new JobExecResult();
 		try {
-			String host = job.getIp();// 服务器地址
-			String userName = job.getJobUser();// 用户名
-			String password = job.getPasswd();// 密码
-			int port = 22;// 端口号
+			HostInfo hostInfo = hostInfoService.get(job.getHostId());
+			String host = hostInfo.getHost();// 服务器地址
+			String userName = hostInfo.getUsername();// 用户名
+			String password = hostInfo.getPasswd();// 密码
+			int port = hostInfo.getPort();// 端口号
 			JSch jsch = new JSch(); // 创建JSch对象
 			// String cmd = "hive -e \"select id,count(1) from stu group by id\"";// 要运行的命令
 			String cmd = StrUtil.replaceChars(job.getCommand(), "\r\n", "");

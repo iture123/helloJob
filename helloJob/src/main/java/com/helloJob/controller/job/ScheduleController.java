@@ -21,7 +21,11 @@ import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
 import com.helloJob.utils.DateUtils;
 import com.helloJob.utils.ThreadUtils;
-
+/**
+ * 作业调度
+ * @author iture
+ *
+ */
 @Controller
 @RequestMapping("/sche")
 public class ScheduleController extends BaseController {

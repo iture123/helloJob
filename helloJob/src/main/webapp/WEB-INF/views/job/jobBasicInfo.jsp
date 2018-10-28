@@ -77,8 +77,7 @@ table.pgTable td.tdTitle{
 	            toolbar="#tb">
 	 </table>
 </div>
-
-<div id="addJob" title="添加作业"  closed="true" class="easyui-dialog" style="width:800px;height:‘auto''"  data-options="closed:'true' ">
+<div id="addJob" title="添加作业"  closed="true" class="easyui-dialog" style="width:750px;height:‘auto''"  data-options="closed:'true' ">
 	<form class="">
 		 <ul>
 			  <li>
@@ -95,12 +94,20 @@ table.pgTable td.tdTitle{
 				  	</div>
 			  </li>
 			 <li id="">
-		    ip
+			 执行主机<select class="easyui-combogrid" name="hostId" data-options="panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
+			  ,panelWidth:270
+			   ,columns: [[
+                        {field:'id',title:'编号',width:60},
+                        {field:'username',title:'用户名',width:80},
+                        {field:'host',title:'ip',width:120},
+                    ]],"  
+			    style="width:150px"></select>
+		 <!--    ip
     	  	<input name="ip" type="text" class="easyui-textbox"  prompt="请输入作业部署机器的ip"  required />
     	  	  &nbsp;&nbsp;账号
     	  	<input name="jobUser" type="text" class="easyui-textbox"   prompt="请输入作业执行用户的账号"   required>
     	  &nbsp;&nbsp;密码
-    	  	<input name="passwd" type="text" class="easyui-textbox"   prompt="请输入作业执行用户的密码" required />
+    	  	<input name="passwd" type="text" class="easyui-textbox"   prompt="请输入作业执行用户的密码" required /> -->
 		  </li>
 			  <li><span style="margin-left:25px;margin-right:5px">备注</span><input name="remark" class="easyui-textbox" style="width:600px" ></li>
 		 </ul>
@@ -127,12 +134,12 @@ table.pgTable td.tdTitle{
 		</div>
 		<div>失败重试间隔(分钟)<input name="tryInterval"  class="easyui-numberbox" min="1"  value="5" style="width:100"></div>
 		<div  style="margin:5px 0">邮件告警
-		<select name="receiver" class="easyui-combogrid" name="dept" style="width:280px;"
+		<select name="receiver" class="easyui-combogrid"  style="width:280px;"
         data-options="
-         	multiple:true,
+         	multiple:true,	
             panelWidth:330,
             panelHeight:'auto', 
-            idField:'email',
+            idField:'id',
             textField:'name',
             url:'${path}/user/getAllUserList',
             columns:[[
@@ -246,7 +253,7 @@ table.pgTable td.tdTitle{
 		<li>作业编号：{{job.id}}</li>
 		<li>作业名称：{{job.jobName}}</li>
 		<li>作业类型：{{job.jobType}}</li>
-		<li>部署信息 ip:{{job.ip}}   账号:{{job.jobUser}}  密码:{{job.passwd}}</li>
+		<li>部署信息 主机:{{hostInfo.host}}   账号:{{hostInfo.username}}  </li>
 		<li>
 			执行命令：{{job.command}}
 		</li>

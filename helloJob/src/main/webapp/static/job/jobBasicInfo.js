@@ -69,6 +69,9 @@ var jobMvc = {
 					});
 				});
 			}
+			/**
+			 * 挂载调度
+			 */
 			,scheduleJob:function(){
 				var selectRow = jobDg.getSelectRow();
 				if(selectRow.scheType){
@@ -190,7 +193,7 @@ function queryJobDg(param){
             {field:'id',title:'编号',width:50,sortable:true,rowspan:2},
             {field:'jobType',title:'作业类型',width:80,rowspan:2},
             {field:'jobName',title:'名称',width:200,rowspan:2},
-            {field:'ip',title:'ip',width:110,rowspan:2},
+            {field:'host',title:'主机',width:110,rowspan:2},
             {field:'jobUser',title:'账号',width:70,rowspan:2},
          /*   {field:'passwd',title:'密码',width:70,rowspan:2},*/
             {field:'command',title:'命令',width:200,rowspan:2},

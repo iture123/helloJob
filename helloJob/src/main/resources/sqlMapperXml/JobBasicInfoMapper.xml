@@ -3,14 +3,17 @@
 <mapper namespace="com.helloJob.mapper.job.JobBasicInfoMapper">
 
   <select id="getJobInfoList" resultType="map" >
-SELECT t1.id,t1.job_name as jobName,t1.command, t1.ip,t1.job_user jobUser,t1.passwd,t1.`create_time`  AS createTime,t1.`sche_type`,t2.name AS jobType,t3.`name` AS creater,
+SELECT t1.id,t1.job_name AS jobName,t1.command, t1.`create_time`  AS createTime,t1.`sche_type`,t2.name AS jobType,t3.`name` AS creater,
 t4.`sche_type` AS scheType, t4.`begin_time` beginTime,t4.`end_time` endTime,t4.cron,t4.receiver,t4.`is_self_rely` isSelfRely,t4.pid 
-,t4.try_count,t4.try_interval
+,t4.try_count,t4.try_interval,t5.host,t5.username jobUser
   FROM job_basic_info t1 
 LEFT JOIN job_type t2 ON t1.`job_type`=t2.`id`
 LEFT JOIN `user` t3 ON t1.`creater`=t3.`id`
-LEFT JOIN (SELECT tm.*,GROUP_CONCAT(CAST(tn.pid  AS char)SEPARATOR ",")  pid FROM sche_basic_info tm LEFT JOIN sche_rely_job tn ON tm.job_id=tn.job_id GROUP BY tm.job_id) t4 ON t1.id = t4.`job_id`
- 
+LEFT JOIN (
+	SELECT tm.*,GROUP_CONCAT(CAST(tn.pid  AS CHAR)SEPARATOR ",")  pid FROM sche_basic_info tm 
+	LEFT JOIN sche_rely_job tn ON tm.job_id=tn.job_id GROUP BY tm.job_id
+) t4 ON t1.id = t4.`job_id`
+LEFT JOIN host_info t5 ON t1.`host_id`=t5.id
    WHERE 1=1
     <if test=" jobId != null "> <![CDATA[  
     	and t1.id= #{jobId}

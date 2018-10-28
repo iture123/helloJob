@@ -20,8 +20,7 @@ public class HostInfo {
 	private Integer port;
 	private String username;
 	private String passwd;
-	private String driverClass;//jdbc的 driver class
-	private String jdbcUrl;
 	private Long creater;
 	private String createTime;
+	
 }

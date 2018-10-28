@@ -26,12 +26,12 @@
 		 data-options="closed:'true' ">
 	     	<table cellPadding="5">
 	     	  	<tr><td width="60">协议</td>	<td>
-	     	  	<select class="easyui-combobox" id="protocol" name="protocol" style="width:100px;" panelHeight="auto"><option>ssh</option><option>jdbc</option></select>
+	     	  	<select class="easyui-combobox" id="protocol" name="protocol" style="width:100px;" panelHeight="auto"><option>ssh</option></select>
 	     	  	</td></tr>
-		     	<tr class="ssh" ><td >ip</td>	<td><input name="ip"class="easyui-textbox"  prompt=""  required /></td></tr>
+		     	<tr class="ssh" ><td >主机ip</td>	<td><input name="host"class="easyui-textbox"  prompt=""  required /></td></tr>
 		     	<tr class="ssh"><td >ssh端口</td>	<td><input name="port" class="easyui-numberbox "   defaultValue="22"  required /></td></tr>
-		     	 <tr class="jdbc" ><td >driver class</td>	<td><input name="driverClass" class="easyui-textbox"   defaultValue="com.mysql.jdbc.Driver" style="width:300px"   required /></td></tr>
-		     	 <tr class="jdbc" ><td >url</td>	<td><input name="jdbcUrl" class="easyui-textbox"  defaultValue="jdbc:mysql://127.0.0.1:3306/test"   style="width:300px" required /></td></tr>
+		     <!-- 	 <tr class="jdbc" ><td >driver class</td>	<td><input name="driverClass" class="easyui-textbox"   defaultValue="com.mysql.jdbc.Driver" style="width:300px"   required /></td></tr>
+		     	 <tr class="jdbc" ><td >url</td>	<td><input name="jdbcUrl" class="easyui-textbox"  defaultValue="jdbc:mysql://127.0.0.1:3306/test"   style="width:300px" required /></td></tr> -->
 		   		<tr><td>账号</td><td><input name="username" class="easyui-textbox"   prompt=""   required></td></tr>
 		   		<tr><td>密码	</td><td><input name="passwd"  class="easyui-textbox"   prompt="" required /></td></tr>
 	   		</table>

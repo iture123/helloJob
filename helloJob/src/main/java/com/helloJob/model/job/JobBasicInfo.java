@@ -23,8 +23,9 @@ public class JobBasicInfo implements Serializable {
 	private Long jobType;// 作业类型
 	private Long creater;// 创建人
 	private String remark;//备注
-	private String jobUser;
+	private Integer hostId;
+/*	private String jobUser;
 	private String passwd;
-	private String ip;
+	private String ip;*/
 	private String createTime;
 }

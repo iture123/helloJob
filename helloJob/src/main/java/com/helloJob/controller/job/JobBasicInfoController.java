@@ -17,8 +17,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.helloJob.commons.base.BaseController;
 import com.helloJob.commons.result.PageInfo;
+import com.helloJob.model.job.HostInfo;
 import com.helloJob.model.job.JobBasicInfo;
 import com.helloJob.model.job.ScheBasicInfo;
+import com.helloJob.service.job.HostInfoService;
 import com.helloJob.service.job.JobBasicInfoService;
 import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
@@ -34,6 +36,8 @@ public class JobBasicInfoController  extends BaseController{
 	private ScheBasicInfoService scheBasicInfoService;
 	@Autowired
 	private ScheRelyJobService scheRelyJobService;
+	@Autowired
+	private HostInfoService HostInfoService;
 	
 	@GetMapping("/jobBasicInfo")
 	public String jobBasicInfo() {
@@ -64,7 +68,10 @@ public class JobBasicInfoController  extends BaseController{
 		Map<String,Object> dataMap = Maps.newHashMap();
 		dataMap.put("job", job);
 		ScheBasicInfo scheBasicInfo = scheBasicInfoService.getScheInfo(jobId);
+		HostInfo hostInfo = HostInfoService.get(job.getHostId());
+		hostInfo.setPasswd(null);
 		dataMap.put("scheBasicInfo",scheBasicInfo);
+		dataMap.put("hostInfo", hostInfo);
 		return renderSuccess(dataMap);
 	}
 	@ResponseBody

@@ -11,8 +11,8 @@ $(function() {
             {field:'passwd',title:'密码',width:80},
             {field:'host',title:'ip',width:100},
             {field:'port',title:'端口',width:50},
-            {field:'driverClass',title:'driver class ',width:150},
-            {field:'jdbcUrl',title:'jdbc url',width:300},
+/*            {field:'driverClass',title:'driver class ',width:150},
+            {field:'jdbcUrl',title:'jdbc url',width:300},*/
             {field:'createTime',title:'创建时间',width:140}
         ]],
         toolbar : '#orgToolbar'
@@ -61,13 +61,13 @@ var hostMvc={
 				}
 				easyUtils.post(path+"/host/get",{id:id},function(obj,msg){
 				    $("#addHostDlg").openDialog(function(){
-				    	var param = jobMvc.Service.getAddJobParam();
-						param.id =jobId ;
-						easyUtils.post(path+"/job/update",param,function(result){
-								jobDg.datagrid("reload");
+				    	var param = easyuiUtils.getParam("addHostDlg");
+				    	param.id=id;
+						easyUtils.post(path+"/host/update",param,function(result){
+							hostDg.datagrid("reload");
 						});
 				    },{
-				    	title:'修改作业'
+				    	title:'修改中国银行需不需'
 				    });
 					easyuiUtils.clearParam("addHostDlg",obj);
 					$("#protocol").combobox("setValue",obj.protocol);
