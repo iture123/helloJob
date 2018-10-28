@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.helloJob.mapper.job.JobOwnerMapper">
+
+  <select id="getOwnerEmailByJobId" resultType="string" >
+   
+    </select>
+   <!--  <insert id="insertBatch" parameterType="java.util.List">
+
+     insert into userinfo (uid, uname, uphone, uaddress)
+
+     values
+
+    <foreach collection="list" item="item" index="index" separator="," >
+
+    (#{item.uid,jdbcType=INTEGER},
+
+     #{item.uname,jdbcType=VARCHAR},
+
+     #{item.uphone,jdbcType=VARCHAR},
+
+     #{item.uaddress,jdbcType=VARCHAR}
+
+     )
+   </foreach>
+
+   </insert> -->
+</mapper>
