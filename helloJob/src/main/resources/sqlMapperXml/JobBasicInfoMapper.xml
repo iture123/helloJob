@@ -14,7 +14,8 @@ LEFT JOIN (
 	LEFT JOIN sche_rely_job tn ON tm.job_id=tn.job_id GROUP BY tm.job_id
 ) t4 ON t1.id = t4.`job_id`
 LEFT JOIN host_info t5 ON t1.`host_id`=t5.id
-   WHERE 1=1
+LEFT JOIN (SELECT job_id FROM `job_owner` WHERE user_id=#{loginUserId})  t6 ON t1.id =t6.job_id
+   WHERE 1=1 and (t1.creater=#{loginUserId} OR t6.job_id IS NOT NULL )
     <if test=" jobId != null "> <![CDATA[  
     	and t1.id= #{jobId}
      ]]></if>

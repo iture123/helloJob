@@ -7,9 +7,9 @@ $(function() {
         columns:[[
             {field:'id',title:'序号',width:50,sortable:true},
             {field:'protocol',title:'协议',width:60},
-            {field:'username',title:'账号',width:80},
+            {field:'username',title:'账号',width:100},
             {field:'passwd',title:'密码',width:80},
-            {field:'host',title:'ip',width:100},
+            {field:'host',title:'ip',width:130},
             {field:'port',title:'端口',width:50},
 /*            {field:'driverClass',title:'driver class ',width:150},
             {field:'jdbcUrl',title:'jdbc url',width:300},*/

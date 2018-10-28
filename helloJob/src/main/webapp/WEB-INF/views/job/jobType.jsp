@@ -6,7 +6,7 @@
 <%@ include file="/commons/basejs.jsp" %> 
 <meta http-equiv="Access-Control-Allow-Origin" content="*">  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>作业类型</title>
+<title>业务类型</title>
 <body>
 	<div class="easyui-layout" data-options="fit:true,border:false">
 	    <div data-options="region:'center',border:false"  style="overflow: hidden;">
@@ -17,7 +17,7 @@
 	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="jobType.update()">修改</a>
 	    </div>
 	</div>
-	<div  id="addJobType"  class="easyui-dialog" title="作业类型" style="width:300px;height:160px;padding:10px"
+	<div  id="addJobType"  class="easyui-dialog" title="业务类型" style="width:300px;height:160px;padding:10px"
 		 data-options="closed:'true' ">
 		<div>名称<input id="jobType"  class="easyui-textbox"  data-options="required:true" />	</div>
 		<div style="margin-top:10px">排序<input id="seq" value="10"  class="easyui-numberspinner" 

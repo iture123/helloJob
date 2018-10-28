@@ -40,6 +40,7 @@ public abstract class AbstractJobExecutor implements Runnable {
 		this.jobInstanceService = context.getBean(JobInstanceService.class);
 		this.scheRelyJobService = context.getBean(ScheRelyJobService.class);
 		this.scheBasicInfoService = context.getBean(ScheBasicInfoService.class);
+		this.jobOwnerService = context.getBean(JobOwnerService.class);
 		this.scheInfo = scheInfo;
 	}
 

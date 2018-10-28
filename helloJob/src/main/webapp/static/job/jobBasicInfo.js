@@ -196,15 +196,13 @@ function queryJobDg(param){
         idField : 'id',   sortName : 'id',   sortOrder : 'desc',pageSize : 20,
         columns:[[
             {field:'id',title:'编号',width:50,sortable:true,rowspan:2},
-            {field:'jobType',title:'作业类型',width:80,rowspan:2},
+            {field:'jobType',title:'业务类型',width:80,rowspan:2},
             {field:'jobName',title:'名称',width:200,rowspan:2},
             {field:'host',title:'主机',width:110,rowspan:2},
-          /*  {field:'jobUser',title:'账号',width:70,rowspan:2},*/
-         /*   {field:'passwd',title:'密码',width:70,rowspan:2},*/
             {field:'command',title:'命令',width:200,rowspan:2},
             {field:'scheManager',title:'调度',align:'center',colspan:5},
             {field:'creater',title:'创建人',width:70,rowspan:2},
-         /*   {field:'owner',title:'责任人',width:70,rowspan:2},*/
+         /*   {field:'owner',title:'责任人',width:140,rowspan:2},*/
             {field:'createTime',title:'创建时间',width:120,rowspan:2,formatter : function(value, row, index){
             	return value.substring(0,16);
             }}
@@ -237,7 +235,6 @@ function queryJobDg(param){
             }},
             {field:'try_count',title:'重试次数',width:60},
             {field:'try_interval',title:'重试间隔',width:60},
-          /*  {field:'receiver',title:'告警邮箱',width:150},*/
             {field:'isSelfRely',title:'自依赖',width:50,align:'center'}
             ]
         ],

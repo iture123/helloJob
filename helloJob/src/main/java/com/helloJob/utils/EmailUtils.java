@@ -9,7 +9,7 @@ import cn.hutool.setting.dialect.Props;
 
 public class EmailUtils {
 	public static void sendByHtml(String receiver,String title,String content) throws EmailException{
-		sendByHtml( receiver, title, content,null);
+		sendByHtml( receiver,null,title, content);
 	}
 	public static void sendByHtml(String receiver,String cc,String title,String content) throws EmailException{
 		sendByHtml( receiver, cc,title, content,null);
@@ -22,6 +22,7 @@ public class EmailUtils {
 		Props props = new Props("email.properties");
 		email.setHostName(props.getProperty("hostName"));
 		email.setSmtpPort(Integer.parseInt(props.getProperty("smtpPort")));
+		//使用邮箱账号和授权码登陆
 		email.setAuthentication(props.getProperty("sender"),props.getProperty("passwd"));
 		email.setSSLOnConnect(false);
 		email.setCharset("utf-8");
@@ -35,5 +36,11 @@ public class EmailUtils {
 		email.send();
 	}
 
-
+	public static void main(String[] args) {
+		try {
+			EmailUtils.sendByHtml("test@qq.com", "test", "<html>The apache logo - <img src=\\\"cid:\"+cid+\"\\\"></html>");
+		} catch (EmailException e) {
+			e.printStackTrace();
+		}
+	}
 }

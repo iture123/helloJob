@@ -24,6 +24,7 @@ import com.helloJob.model.job.ScheBasicInfo;
 import com.helloJob.service.job.HostInfoService;
 import com.helloJob.service.job.JobBasicInfoService;
 import com.helloJob.service.job.JobOwnerService;
+import com.helloJob.service.job.JobTypeService;
 import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
 import com.helloJob.utils.DateUtils;
@@ -42,7 +43,8 @@ public class JobBasicInfoController  extends BaseController{
 	private HostInfoService hostInfoService;
 	@Autowired
 	private JobOwnerService jobOwnerService;
-	
+	@Autowired
+	private JobTypeService jobTypeService;
 	@GetMapping("/jobBasicInfo")
 	public String jobBasicInfo() {
 		return "job/jobBasicInfo";
@@ -75,14 +77,16 @@ public class JobBasicInfoController  extends BaseController{
 		dataMap.put("job", job);
 		ScheBasicInfo scheBasicInfo = scheBasicInfoService.getScheInfo(jobId);
 		HostInfo hostInfo = hostInfoService.get(job.getHostId());
-		hostInfo.setPasswd(null);
+		if(hostInfo != null) hostInfo.setPasswd(null);
 		List<User> owners = jobOwnerService.getOwnerByJobId(jobId);
 		List<Long> ownerIds = jobOwnerService.getOwnerIds(owners);
 		List<String> ownerNames = jobOwnerService.getOwnerNames(owners);
+		String jobTypeName = jobTypeService.getName(job.getJobType());
 		dataMap.put("scheBasicInfo",scheBasicInfo);
 		dataMap.put("hostInfo", hostInfo);
 		dataMap.put("ownerNames", ownerNames);
 		dataMap.put("ownerIds", ownerIds);
+		dataMap.put("jobTypeName", jobTypeName);
 		return renderSuccess(dataMap);
 	}
 	@ResponseBody
@@ -93,10 +97,12 @@ public class JobBasicInfoController  extends BaseController{
             Long jobId,Long creater,Long jobType,String jobName){
 		PageInfo pageInfo = new PageInfo(page, rows, sort, order);
 		Map<String, Object> condition = Maps.newHashMap();
+		Long loginUserId = getShiroUser().getId();
 		condition.put("jobId", jobId);
 		condition.put("creater", creater);
 		condition.put("jobType", jobType);
 		condition.put("jobName", jobName);
+		condition.put("loginUserId", loginUserId);
 		pageInfo.setCondition(condition );
 		jobBasicInfoService.getJobInfoList(pageInfo);
 		return pageInfo;

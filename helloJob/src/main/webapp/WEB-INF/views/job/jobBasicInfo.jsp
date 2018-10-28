@@ -94,7 +94,7 @@ table.pgTable td.tdTitle{
 				  	</div>
 			  </li>
 			 <li id="">
-			 执行主机&nbsp;<select class="easyui-combogrid hostId"  name="hostId" data-options="panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
+			 执行主机&nbsp;<select class="easyui-combogrid hostId"  name="hostId" data-options="required:true,panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
 			  ,panelWidth:270
 			   ,columns: [[
                         {field:'id',title:'编号',width:60},
@@ -110,13 +110,12 @@ table.pgTable td.tdTitle{
     	  	<input name="passwd" type="text" class="easyui-textbox"   prompt="请输入作业执行用户的密码" required /> -->
 		  </li>
 		   <li id="">
-			 <span style="margin-left:12px;margin-right:5px">责任人</span><select class="easyui-combogrid ownerIds" name="ownerIds" data-options="multiple:true,panelHeight:'auto',idField:'id',textField:'name'
+			 <span style="margin-left:12px;margin-right:5px">责任人</span><select class="easyui-combogrid ownerIds" name="ownerIds" data-options="required:true,multiple:true,panelHeight:'auto',idField:'id',textField:'name'
 			  ,url:' ${staticPath}/user/getOtherUsers' 
-			  ,panelWidth:270
+			  ,panelWidth:350
 			   ,columns: [[
-                        {field:'id',title:'用户id',width:60},
-                        {field:'name',title:'用户名',width:80},
-                        {field:'email',title:'email',width:120},
+                        {field:'name',title:'用户名',width:120},
+                        {field:'email',title:'email',width:210},
                     ]],"  
 			    style="width:350px"></select>
 			  <!--   <span style="">作业执行失败时，第一责任人（创建人），第二责任人是直接收件人。第三之后责任人是抄送</span> -->
@@ -264,7 +263,7 @@ table.pgTable td.tdTitle{
 	<ul>
 		<li>作业编号：{{job.id}}</li>
 		<li>作业名称：{{job.jobName}}</li>
-		<li>作业类型：{{job.jobType}}</li>
+		<li>业务类型：{{jobTypeName}}</li>
 		<li>部署信息 主机:{{hostInfo.host}}   账号:{{hostInfo.username}}  </li>
 		<li>
 			执行命令：{{job.command}}
