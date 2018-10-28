@@ -84,7 +84,7 @@ table.pgTable td.tdTitle{
 			  	<div>作业名称&nbsp;  <input data-options="required:true" class="easyui-textbox" name="jobName" style="width:250px" ></div>
 			  </li>
 			  <li>
-			  	作业类型&nbsp;
+			  	任务类型&nbsp;
 			  	<input id="jobType"  name="jobType" class="easyui-combobox"  style="width:150px"
    			 data-options="panelWidth:150,valueField:'id',textField:'name',url:'${path}/jobType/combobox',required:true">
 			  </li>
