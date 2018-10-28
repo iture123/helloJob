@@ -97,7 +97,7 @@ table.pgTable td.tdTitle{
 			 执行主机&nbsp;<select class="easyui-combogrid hostId"  name="hostId" data-options="required:true,panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
 			  ,panelWidth:270
 			   ,columns: [[
-                        {field:'id',title:'编号',width:60},
+                        {field:'protocol',title:'协议',width:60},
                         {field:'username',title:'用户名',width:80},
                         {field:'host',title:'ip',width:120},
                     ]],"  
