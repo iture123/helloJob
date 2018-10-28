@@ -30,4 +30,10 @@ public interface IUserService extends IService<User> {
     void deleteUserById(Long id);
 
     List<Map<String,Object>> getAllUserList();
+    /**
+     * 获取其他用户
+     * @param userId
+     * @return
+     */
+    List<User> getOtherUsers(long userId);
 }

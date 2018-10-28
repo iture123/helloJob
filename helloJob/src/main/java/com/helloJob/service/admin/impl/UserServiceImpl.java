@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.helloJob.commons.result.PageInfo;
@@ -117,6 +118,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	@Override
 	public List<Map<String,Object>> getAllUserList() {
 		return userMapper.getAllUserList();
+	}
+
+	@Override
+	public List<User> getOtherUsers(long userId) {
+		Wrapper<User> wrapper = new EntityWrapper<>();
+		wrapper.where("id <> {0}", userId);
+		List<User> users = userMapper.selectList(wrapper );
+		users.forEach(x->{
+			x.setPassword(null);
+		});
+		return users;
 	}
 
 }

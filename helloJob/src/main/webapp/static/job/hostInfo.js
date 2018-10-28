@@ -67,7 +67,7 @@ var hostMvc={
 							hostDg.datagrid("reload");
 						});
 				    },{
-				    	title:'修改中国银行需不需'
+				    	title:'修改'
 				    });
 					easyuiUtils.clearParam("addHostDlg",obj);
 					$("#protocol").combobox("setValue",obj.protocol);

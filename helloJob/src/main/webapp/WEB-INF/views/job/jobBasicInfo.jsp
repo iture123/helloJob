@@ -81,10 +81,10 @@ table.pgTable td.tdTitle{
 	<form class="">
 		 <ul>
 			  <li>
-			  	<div>作业名称  <input data-options="required:true" class="easyui-textbox" name="jobName" style="width:250px" ></div>
+			  	<div>作业名称&nbsp;  <input data-options="required:true" class="easyui-textbox" name="jobName" style="width:250px" ></div>
 			  </li>
 			  <li>
-			  	作业类型
+			  	作业类型&nbsp;
 			  	<input id="jobType"  name="jobType" class="easyui-combobox"  style="width:150px"
    			 data-options="panelWidth:150,valueField:'id',textField:'name',url:'${path}/jobType/combobox',required:true">
 			  </li>
@@ -94,7 +94,7 @@ table.pgTable td.tdTitle{
 				  	</div>
 			  </li>
 			 <li id="">
-			 执行主机<select class="easyui-combogrid" name="hostId" data-options="panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
+			 执行主机&nbsp;<select class="easyui-combogrid hostId"  name="hostId" data-options="panelHeight:'auto',idField:'id',textField:'host',url:' ${staticPath}/host/getAllList' 
 			  ,panelWidth:270
 			   ,columns: [[
                         {field:'id',title:'编号',width:60},
@@ -109,7 +109,19 @@ table.pgTable td.tdTitle{
     	  &nbsp;&nbsp;密码
     	  	<input name="passwd" type="text" class="easyui-textbox"   prompt="请输入作业执行用户的密码" required /> -->
 		  </li>
-			  <li><span style="margin-left:25px;margin-right:5px">备注</span><input name="remark" class="easyui-textbox" style="width:600px" ></li>
+		   <li id="">
+			 <span style="margin-left:12px;margin-right:5px">责任人</span><select class="easyui-combogrid ownerIds" name="ownerIds" data-options="multiple:true,panelHeight:'auto',idField:'id',textField:'name'
+			  ,url:' ${staticPath}/user/getOtherUsers' 
+			  ,panelWidth:270
+			   ,columns: [[
+                        {field:'id',title:'用户id',width:60},
+                        {field:'name',title:'用户名',width:80},
+                        {field:'email',title:'email',width:120},
+                    ]],"  
+			    style="width:350px"></select>
+			  <!--   <span style="">作业执行失败时，第一责任人（创建人），第二责任人是直接收件人。第三之后责任人是抄送</span> -->
+		  </li>
+		<li><span style="margin-left:25px;margin-right:5px">备注</span><input name="remark" class="easyui-textbox" style="width:600px" ></li>
 		 </ul>
 	</form>
 </div>
@@ -256,6 +268,9 @@ table.pgTable td.tdTitle{
 		<li>部署信息 主机:{{hostInfo.host}}   账号:{{hostInfo.username}}  </li>
 		<li>
 			执行命令：{{job.command}}
+		</li>
+		<li>
+			责任人：{{ownerNames}}
 		</li>
 		<li>
 			{@if scheBasicInfo != null }

@@ -3,7 +3,11 @@
 <mapper namespace="com.helloJob.mapper.job.JobOwnerMapper">
 
   <select id="getOwnerEmailByJobId" resultType="string" >
-   
+	  SELECT email FROM `user` t1
+	LEFT JOIN (SELECT user_id FROM job_owner WHERE job_id=#{job_id}
+	UNION ALL  SELECT creater FROM `job_basic_info` WHERE id=#{job_id}
+	)t2 ON t1.`id`=t2.user_id
+	WHERE   t1.email IS NOT NULL AND t2.user_id IS NOT NULL 
     </select>
    <!--  <insert id="insertBatch" parameterType="java.util.List">
 

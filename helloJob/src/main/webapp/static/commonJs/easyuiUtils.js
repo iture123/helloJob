@@ -118,6 +118,14 @@ var easyuiUtils = {
 				if(value)$(this).combobox("setValue",value);
 			}
 		});
+		/*$("#"+domId+" .easyui-combogrid").each(function(index,dom){
+			if($(this).next().is(":visible")){
+				var name = $(this).attr("textboxname"); 
+				var value = data[name];
+				if(value)$(this).combogrid("setValue",value);
+			}
+		});*/
+		
 		$("#"+domId+" .easyui-datebox").each(function(index,dom){
 			var name = $(this).attr("textboxname"); 
 			if($(this).next().is(":visible")){

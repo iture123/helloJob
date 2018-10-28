@@ -6,7 +6,6 @@ import org.apache.commons.mail.EmailException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.helloJob.model.job.JobBasicInfo;
@@ -14,6 +13,7 @@ import com.helloJob.model.job.ScheBasicInfo;
 import com.helloJob.model.job.ScheRelyJob;
 import com.helloJob.service.job.JobBasicInfoService;
 import com.helloJob.service.job.JobInstanceService;
+import com.helloJob.service.job.JobOwnerService;
 import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
 import com.helloJob.utils.ApplicationContextUtil;
@@ -30,6 +30,7 @@ public abstract class AbstractJobExecutor implements Runnable {
 	private ScheBasicInfo scheInfo;
 	private ScheRelyJobService scheRelyJobService;
 	private ScheBasicInfoService scheBasicInfoService;
+	private JobOwnerService jobOwnerService;
 	private ApplicationContext context;
 	public AbstractJobExecutor(JobBasicInfo job,ScheBasicInfo scheInfo, Integer dt) {
 		this.job = job;
@@ -97,16 +98,24 @@ public abstract class AbstractJobExecutor implements Runnable {
 		}
 	}
 	private void sendWarnEmail(JobBasicInfo job,Integer dt,String ex) {
-		String receiver = scheInfo.getReceiver();
-		if(StringUtils.isEmpty(receiver)) {
-			log.warn("作业"+job.getId()+"未配置告警邮箱 ！");
+		//String receiver = scheInfo.getReceiver();
+		List<String> owners = jobOwnerService.getOwnerEmailByJobId(job.getId());
+		if(owners.size() ==0) {
+			log.warn("作业"+job.getId()+"责任人未配置邮箱地址 ！");
 			return;
 		}
 		String content = "报错作业信息如下<br>作业名称："+job.getJobName()+"<br>编号："+job.getId()+"<br>执行命令："+job.getCommand()+"<br>dt："+dt;
 		content += "<br><br>"+ex;
-		String title ="调度系统作业告警";
+		String title ="调度系统作业告警："+job.getId();
 		try {
-			EmailUtils.sendByHtml( receiver, title , content);
+			int ownersCount = owners.size();
+			if(ownersCount <= 2) {
+				EmailUtils.sendByHtml( String.join(",", owners), title , content);
+			}else {
+				String receiver = String.join(",", owners.subList(0, 2));
+				String cc =  String.join(",", owners.subList(2,ownersCount));
+				EmailUtils.sendByHtml(receiver ,cc, title , content);
+			}
 		} catch (EmailException e) {
 			e.printStackTrace();
 		}

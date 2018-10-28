@@ -24,7 +24,7 @@ public class ScheBasicInfo implements Serializable{
 	private Integer endTime;
 	private Integer tryCount = 0;//默认重试次数
 	private Integer tryInterval = 1;//默认重试间隔分钟
-	private String receiver;//收件人
-	private String createTime;
+	/*private String receiver;//收件人
+*/	private String createTime;
 	
 }
