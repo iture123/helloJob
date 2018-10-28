@@ -7,9 +7,9 @@
 3. 本系统实现了邮件告警功能，配置作业的收件人邮箱，当作业执行失败会发报错信息到该邮箱。
 
 # 系统截图
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/job.png)
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/addJob.png)
-![Alt text](https://github.com/iture123/helloJob/blob/master/helloJob/doc/jobLog.png)
+![Alt text](https://github.com/iture123/helloJob/blob/dev/helloJob/doc/job.png)
+![Alt text](https://github.com/iture123/helloJob/blob/dev/helloJob/doc/addJob.png)
+![Alt text](https://github.com/iture123/helloJob/blob/dev/helloJob/doc/jobLog.png)
 
 # 技术栈：
 spring、springmvc、mybatis、quartz、mysql
