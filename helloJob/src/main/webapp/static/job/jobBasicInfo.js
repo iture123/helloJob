@@ -119,7 +119,7 @@ var jobMvc = {
 				$("#runOnceDlg").openDialog(function(){
 					var param = {};
 					param.jobId = jobId;
-					param.dt = $("#runOnceDt").val();
+					param.dt = $("#runOnceDt").datebox("getValue");
 					param.isSelfRely= $("#runOnceIsSelfRely").combobox("getValue");
 					easyUtils.post(path+"/sche/runOnce",param,function(obj){
 						$.messager.alert("成功", "操作成功！","info");  
