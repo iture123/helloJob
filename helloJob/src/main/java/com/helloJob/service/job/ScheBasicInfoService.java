@@ -10,7 +10,7 @@ public interface ScheBasicInfoService {
 
 	public void mountScheByTime(Long jobId, String cron);
 
-	public void runOnce(long jobId, Integer dt, String isSelfRely);
+	public void runOnce(long jobId, int dt, String isSelfRely);
 	
 	public ScheBasicInfo getScheInfo(Long jobId);
 	/**

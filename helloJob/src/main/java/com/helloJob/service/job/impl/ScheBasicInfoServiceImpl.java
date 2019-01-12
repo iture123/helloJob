@@ -10,7 +10,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.helloJob.constant.ScheTypeConst;
-import com.helloJob.jobExecutor.CommonJobEntry;
+import com.helloJob.executor.CommonJobExecEnginer;
+import com.helloJob.executor.RunningExectorUtils;
 import com.helloJob.mapper.job.ScheBasicInfoMapper;
 import com.helloJob.model.job.JobBasicInfo;
 import com.helloJob.model.job.ScheBasicInfo;
@@ -18,8 +19,8 @@ import com.helloJob.service.job.JobBasicInfoService;
 import com.helloJob.service.job.JobLogService;
 import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
+import com.helloJob.utils.job.JobThreadPool;
 import com.helloJob.utils.job.QuartzManager;
-import com.helloJob.utils.job.RunningJobUtils;
 import com.helloJob.vto.RunningJobInfo;
 @Service
 public class ScheBasicInfoServiceImpl  extends ServiceImpl< ScheBasicInfoMapper,  ScheBasicInfo> implements ScheBasicInfoService{
@@ -40,12 +41,13 @@ public class ScheBasicInfoServiceImpl  extends ServiceImpl< ScheBasicInfoMapper,
 		QuartzManager.addJob(jobId+"", cron);
 	}
 	@Override
-	public void runOnce(long jobId, Integer dt, String isSelfRely) {
+	public void runOnce(long jobId, int dt, String isSelfRely) {
 		JobBasicInfo job = JobBasicInfoService.get( jobId);
 		ScheBasicInfo scheInfo =new ScheBasicInfo();
 		scheInfo.setIsSelfRely(isSelfRely);
 		scheInfo.setTryCount(0);
-		CommonJobEntry.execute(job,scheInfo, dt);
+		JobThreadPool.getInstance().execute(new CommonJobExecEnginer(job,scheInfo, dt));
+		//CommonJobExecEnginer.execute(job,scheInfo, dt);
 	}
 	@Override
 	public ScheBasicInfo getScheInfo(Long jobId) {
@@ -57,7 +59,7 @@ public class ScheBasicInfoServiceImpl  extends ServiceImpl< ScheBasicInfoMapper,
 		QuartzManager.removeJob(jobId+"");
 		deleteByJobId(jobId);
 	}
-	@Override
+	@Override	
 	public void stopRelyJobSchedule(Long jobId) {
 		deleteByJobId(jobId);
 		scheRelyJobService.deleteParentJobs(jobId);
@@ -78,12 +80,13 @@ public class ScheBasicInfoServiceImpl  extends ServiceImpl< ScheBasicInfoMapper,
 	public void killJobs(Set<Long> jobIds, Integer dt,String firstLineLog) {
 		List<String> jobLogIds = jobLogService.getRunningJobLogIds(jobIds, dt);
 		for(String jobLogId : jobLogIds) {
-			RunningJobInfo runningJobInfo = RunningJobUtils.get(jobLogId);
-			if(runningJobInfo !=null) {
-				runningJobInfo.setExitVal(-1);
-				runningJobInfo.setFirstLineLog(firstLineLog);
-				RunningJobUtils.kill(jobLogId);
-			}
+			RunningExectorUtils.kill(jobLogId);
+			/*
+			 * RunningJobInfo runningJobInfo = RunningJobUtils.get(jobLogId);
+			 * if(runningJobInfo !=null) { runningJobInfo.setExitVal(-1);
+			 * runningJobInfo.setFirstLineLog(firstLineLog); RunningJobUtils.kill(jobLogId);
+			 * }
+			 */
 		}
 	}
 }

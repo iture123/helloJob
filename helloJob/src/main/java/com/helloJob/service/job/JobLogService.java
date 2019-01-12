@@ -18,10 +18,23 @@ public interface JobLogService {
 	
 	public String seeLog(String jobLogId);
 
-	public void updateError(JobLog jobLog, String message);
-
-	public void updateSuccess(JobLog jobLog);
-
+	/**
+	 * 更新作业执行的最终状态
+	 * @param jobLogId
+	 * @param finishState
+	 */
+	public void updateForFinish(String jobLogId,String jobState);
+	/**
+	 * 更新作业状态为成功
+	 * @param jobLogId
+	 */
+	public void updateSuccess(String jobLogId);
+	/**
+	 * 更新作业状态为失败
+	 * @param jobLogId
+	 */
+	public void updateError(String jobLogId);
+	
 	public void add(Long jobId, Integer dt, String state, String log);
 
 	public void grid(PageInfo pageInfo);
@@ -39,4 +52,12 @@ public interface JobLogService {
 	 * 获取最新一条日志的状态
 	 * **/
 	String getJobState(Long jobId,Integer dt);
+	/**
+	 * 更新作业日志
+	 * @param jobLogId
+	 * @param log
+	 */
+	public void updateLog(String jobLogId,String log);
+	
+	
 }

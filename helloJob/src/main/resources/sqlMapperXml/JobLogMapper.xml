@@ -22,13 +22,21 @@ where 1=1
     ,end_time = DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s') 
   	 WHERE job_state ='执行中'
   ]]> </update>
-<select id="getRunningJobIds" resultType="string"  >
+  
+  <select id="getRunningJobIds" resultType="string"  >
     		select id from job_log  where job_state='执行中' and dt = #{dt} and job_id in 
   <foreach collection="jobIds" index="index" item="jobId" open="(" separator="," close=")">  
             #{jobId}  
         </foreach>
     </select>
+    
     <select id="getJobState" resultType="string"  >
     		select job_state from job_log  where job_id=#{jobId}   and dt = #{dt} order by begin_time desc limit 1 
     </select>
+    
+    <update id="updateForFinish"><![CDATA[  
+  UPDATE job_log SET job_state=#{jobState},end_time=#{endTime} where id=#{jobLogId}
+  ]]> </update>
+    
+    
 </mapper>

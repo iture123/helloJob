@@ -55,25 +55,16 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper,  JobLog> implem
 		jobLog.setJobState(JobStateConst.RUNNING);
 		jobLog.setId(UUID.randomUUID().toString()); 
 		jobLog.setJobImg(JSON.toJSONString(job));
-		jobLog.setLog("执行命令:"+job.getCommand());
 		this.add(jobLog);
 		return jobLog;
 	}
 
-	@Override
-	public void updateError(JobLog jobLog, String error) {
-		jobLog.setJobState(JobStateConst.ERROR);
-		jobLog.setLog(error);
-		jobLog.setEndTime(DateUtils.getCreateTime());
-		jobLogMapper.updateById(jobLog);
-	}
-
-	@Override
-	public void updateSuccess(JobLog jobLog) {
-		jobLog.setJobState(JobStateConst.SUCCESS);
-		jobLog.setEndTime(DateUtils.getCreateTime());
-		jobLogMapper.updateById(jobLog);
-	}
+	/*
+	 * @Override public void updateError(JobLog jobLog, String error) {
+	 * jobLog.setJobState(JobStateConst.ERROR); jobLog.setLog(error);
+	 * jobLog.setEndTime(DateUtils.getCreateTime());
+	 * jobLogMapper.updateById(jobLog); }
+	 */
 
 	@Override
 	public void add(Long jobId, Integer dt, String state, String log) {
@@ -133,6 +124,31 @@ public class JobLogServiceImpl extends ServiceImpl<JobLogMapper,  JobLog> implem
 	public String getJobState(Long jobId, Integer dt) {
 		return jobLogMapper.getJobState(jobId,dt);
 	}
+
+	@Override
+	public void updateLog(String jobLogId, String log) {
+		JobLog jobLog = this.get(jobLogId);
+		jobLog.setLog(log);
+		jobLogMapper.updateById(jobLog);
+	}
+
+
+	@Override
+	public void updateForFinish(String jobLogId, String jobState) {
+		String endTime = DateUtils.getCreateTime();
+		jobLogMapper.updateForFinish(jobLogId, jobState, endTime );
+	}
+
+	@Override
+	public void updateSuccess(String jobLogId) {
+		this.updateForFinish(jobLogId, JobStateConst.SUCCESS);
+	}
+
+	@Override
+	public void updateError(String jobLogId) {
+		this.updateForFinish(jobLogId, JobStateConst.ERROR);
+	}
+
 
 
 }

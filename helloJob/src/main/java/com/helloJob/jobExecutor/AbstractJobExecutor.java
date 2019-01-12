@@ -92,7 +92,7 @@ public abstract class AbstractJobExecutor implements Runnable {
 			log.info(job.getId()+"的下级作业有："+JSON.toJSONString(scheRelyJobList));
 			for (ScheRelyJob relyJob : scheRelyJobList) {
 				JobBasicInfo childJob = jobService.get(relyJob.getJobId());
-				CommonJobEntry.execute(childJob,scheBasicInfoService.getScheInfo(relyJob.getJobId()), dt);
+				//CommonJobEntry.execute(childJob,scheBasicInfoService.getScheInfo(relyJob.getJobId()), dt);
 			}
 		}else {
 			throw new RuntimeException(result.getLog());

@@ -13,13 +13,12 @@ import com.helloJob.commons.base.BaseController;
 import com.helloJob.commons.result.PageInfo;
 import com.helloJob.commons.result.Result;
 import com.helloJob.constant.JobStateConst;
+import com.helloJob.executor.RunningExectorUtils;
 import com.helloJob.model.job.JobLog;
 import com.helloJob.service.job.JobInstanceService;
 import com.helloJob.service.job.JobLogService;
 import com.helloJob.utils.DateUtils;
 import com.helloJob.utils.ThreadUtils;
-import com.helloJob.utils.job.RunningJobUtils;
-import com.helloJob.vto.RunningJobInfo;
 
 @Controller
 @RequestMapping("/jobLog")
@@ -71,7 +70,7 @@ public class JobLogController extends BaseController{
 			}if(jobLog.getJobState().equals(JobStateConst.ERROR) || jobLog.getJobState().equals(JobStateConst.WARNING)) {
 				String firstLineLog = "<div style='color:red'>"+DateUtils.getCreateTime()+":"+getStaffName()+"将该作业设为成功！</div><br>";
 				jobLog.setLog(firstLineLog+jobLog.getLog());
-				jobLogService.updateSuccess(jobLog);
+				jobLogService.updateSuccess(jobLogId);
 				jobInstanceService.add(jobLog.getJobId(), jobLog.getDt());
 				return renderSuccess();
 			}else {
@@ -84,16 +83,16 @@ public class JobLogController extends BaseController{
 	@RequestMapping("/killJob")
 	@ResponseBody
 	public Object killJob(@RequestParam String jobLogId) {
-			RunningJobInfo runningJobInfo = RunningJobUtils.get(jobLogId);
-			if(runningJobInfo !=null) {
-				String firstLineLog = "<div style='color:red'>"+DateUtils.getCreateTime()+":该作业被"+getStaffName()+"kill 掉并设为失败！</div>";
-				runningJobInfo.setExitVal(-1);
-				runningJobInfo.setFirstLineLog(firstLineLog);
-				RunningJobUtils.kill(jobLogId);
-				waitJobStop(jobLogId);
-			}else {
-				return renderError("作业实例不存在 ！");
-			}
+		RunningExectorUtils.kill(jobLogId);
+		/*
+		 * RunningJobInfo runningJobInfo = RunningJobUtils.get(jobLogId);
+		 * if(runningJobInfo !=null) { String firstLineLog =
+		 * "<div style='color:red'>"+DateUtils.getCreateTime()+":该作业被"+getStaffName()
+		 * +"kill 掉并设为失败！</div>"; runningJobInfo.setExitVal(-1);
+		 * runningJobInfo.setFirstLineLog(firstLineLog);
+		 * RunningExectorUtils.kill(jobLogId); waitJobStop(jobLogId); }else { return
+		 * renderError("作业实例不存在 ！"); }
+		 */
 			return renderSuccess();
 	}
 	/***
