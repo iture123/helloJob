@@ -1,4 +1,4 @@
-package com.helloJob.executor;
+package com.helloJob.jobExecutor;
 
 import com.helloJob.service.job.JobLogService;
 import com.helloJob.utils.ApplicationContextUtil;

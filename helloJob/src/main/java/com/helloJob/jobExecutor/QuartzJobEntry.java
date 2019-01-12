@@ -5,7 +5,7 @@ import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.helloJob.executor.CommonJobExecEnginer;
+import com.helloJob.jobExecutor.CommonJobExecEnginer;
 import com.helloJob.model.job.JobBasicInfo;
 import com.helloJob.service.job.JobBasicInfoService;
 import com.helloJob.service.job.ScheBasicInfoService;
@@ -22,6 +22,5 @@ public class QuartzJobEntry implements org.quartz.Job{
 		ScheBasicInfoService scheBasicInfoService  = ApplicationContextUtil.getContext().getBean(ScheBasicInfoService.class);
 		JobBasicInfo job = jobService.get(jobId);
 		JobThreadPool.getInstance().execute(new CommonJobExecEnginer(job,scheBasicInfoService.getScheInfo(jobId),DateUtils.getYesterday()));
-		//CommonJobExecEnginer.execute(job,scheBasicInfoService.getScheInfo(jobId),DateUtils.getYesterday());
 	}
 }	

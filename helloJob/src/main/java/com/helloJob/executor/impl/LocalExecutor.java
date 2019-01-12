@@ -2,8 +2,8 @@ package com.helloJob.executor.impl;
 
 import java.io.IOException;
 
-import com.helloJob.executor.AbstractExecutor;
 import com.helloJob.executor.impl.common.StreamGobbler;
+import com.helloJob.jobExecutor.AbstractExecutor;
 import com.helloJob.model.job.JobBasicInfo;
 
 /**

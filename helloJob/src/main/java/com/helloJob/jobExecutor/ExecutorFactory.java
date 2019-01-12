@@ -1,4 +1,4 @@
-package com.helloJob.executor;
+package com.helloJob.jobExecutor;
 
 import com.helloJob.constant.HostConst;
 import com.helloJob.executor.impl.LocalExecutor;
@@ -13,7 +13,6 @@ public class ExecutorFactory {
 		}else if(hostId == HostConst.SSH) {
 			return new SshExector(job, dt);
 		}else {
-			System.out.println("host id is "+hostId);
 			return null;
 		}
 		

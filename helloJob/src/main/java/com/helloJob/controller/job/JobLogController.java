@@ -13,7 +13,7 @@ import com.helloJob.commons.base.BaseController;
 import com.helloJob.commons.result.PageInfo;
 import com.helloJob.commons.result.Result;
 import com.helloJob.constant.JobStateConst;
-import com.helloJob.executor.RunningExectorUtils;
+import com.helloJob.jobExecutor.RunningExectorUtils;
 import com.helloJob.model.job.JobLog;
 import com.helloJob.service.job.JobInstanceService;
 import com.helloJob.service.job.JobLogService;

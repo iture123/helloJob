@@ -1,4 +1,4 @@
-package com.helloJob.executor;
+package com.helloJob.jobExecutor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
