@@ -21,7 +21,6 @@ import com.helloJob.service.job.ScheBasicInfoService;
 import com.helloJob.service.job.ScheRelyJobService;
 import com.helloJob.utils.job.JobThreadPool;
 import com.helloJob.utils.job.QuartzManager;
-import com.helloJob.vto.RunningJobInfo;
 @Service
 public class ScheBasicInfoServiceImpl  extends ServiceImpl< ScheBasicInfoMapper,  ScheBasicInfo> implements ScheBasicInfoService{
 	@Autowired

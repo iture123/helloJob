@@ -83,7 +83,10 @@ public class JobLogController extends BaseController{
 	@RequestMapping("/killJob")
 	@ResponseBody
 	public Object killJob(@RequestParam String jobLogId) {
+		String firstLineLog =   "<div style='color:red'>"+DateUtils.getCreateTime()+":该作业被"+getStaffName()+" kill 掉并设为失败！</div>";
+		RunningExectorUtils.updateFirstLine(jobLogId, firstLineLog);
 		RunningExectorUtils.kill(jobLogId);
+		
 		/*
 		 * RunningJobInfo runningJobInfo = RunningJobUtils.get(jobLogId);
 		 * if(runningJobInfo !=null) { String firstLineLog =
@@ -93,7 +96,8 @@ public class JobLogController extends BaseController{
 		 * RunningExectorUtils.kill(jobLogId); waitJobStop(jobLogId); }else { return
 		 * renderError("作业实例不存在 ！"); }
 		 */
-			return renderSuccess();
+		 
+		return renderSuccess();
 	}
 	/***
 	 * 等待作业结束

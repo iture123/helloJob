@@ -1,5 +1,6 @@
 package com.helloJob.jobExecutor;
 
+import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.helloJob.service.job.JobLogService;
 import com.helloJob.utils.ApplicationContextUtil;
 import com.helloJob.utils.ThreadUtils;
@@ -29,9 +30,11 @@ public class LogMonitorThread implements Runnable{
 			}
 			ThreadUtils.sleeep(2000);
 			if(this.isExit) {
-				if(lastLength != log.length()) {
-					jobLogService.updateLog(jobLogId, log.toString());
+				String firstLine = RunningExectorUtils.getFirstLine(jobLogId);
+				if(lastLength != log.length() || ! StringUtils.isEmpty(firstLine)) {
+					jobLogService.updateLog(jobLogId, firstLine+log.toString());
 				}
+				RunningExectorUtils.remove(jobLogId);
 				break;
 			}
 		}

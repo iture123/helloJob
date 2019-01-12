@@ -43,7 +43,6 @@ public abstract class AbstractExecutor {
 		} catch (Exception ex) {
 			return false;
 		} finally {
-			RunningExectorUtils.remove(jobLogId);
 			logMonitorThread.exitThread();
 		}
 	}
