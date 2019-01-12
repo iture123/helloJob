@@ -1,4 +1,4 @@
-package com.helloJob.executor.impl.common;
+package com.helloJob.jobExecutor.impl.common;
 
 import java.io.BufferedReader;
 import java.io.IOException;

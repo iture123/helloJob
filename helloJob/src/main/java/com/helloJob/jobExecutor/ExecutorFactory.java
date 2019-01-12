@@ -1,8 +1,8 @@
 package com.helloJob.jobExecutor;
 
 import com.helloJob.constant.HostConst;
-import com.helloJob.executor.impl.LocalExecutor;
-import com.helloJob.executor.impl.SshExector;
+import com.helloJob.jobExecutor.impl.LocalExecutor;
+import com.helloJob.jobExecutor.impl.SshExector;
 import com.helloJob.model.job.JobBasicInfo;
 
 public class ExecutorFactory {

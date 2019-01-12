@@ -1,10 +1,10 @@
-package com.helloJob.executor.impl;
+package com.helloJob.jobExecutor.impl;
 
 import java.io.IOException;
 import java.util.Properties;
 
-import com.helloJob.executor.impl.common.StreamGobbler;
 import com.helloJob.jobExecutor.AbstractExecutor;
+import com.helloJob.jobExecutor.impl.common.StreamGobbler;
 import com.helloJob.model.job.HostInfo;
 import com.helloJob.model.job.JobBasicInfo;
 import com.helloJob.model.job.ScheBasicInfo;
