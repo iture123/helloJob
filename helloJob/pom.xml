@@ -22,7 +22,7 @@
 		<commons-io.version>2.5</commons-io.version>
 		<hibernate-validator.version>5.3.5.Final</hibernate-validator.version>
 		<poi.version>3.16</poi.version>
-		<quartz.version>2.2.3</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<hadoop.version>2.5.0</hadoop.version>
 	</properties>
 
